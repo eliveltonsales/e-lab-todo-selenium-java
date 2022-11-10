@@ -1,9 +1,13 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static java.time.LocalDateTime.now;
@@ -34,6 +38,17 @@ public class TodoPage extends Base {
             txtTask.sendKeys(now().toString());
             btnAdd.click();
         }
+        return btnDelete.size();
+    }
+
+    public int deleteTask(int taskCount){
+        for (int index=0;index<taskCount;index++) {
+            btnDelete.get(index).click();
+        }
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(500))
+                .until(ExpectedConditions.numberOfElementsToBe(By.className("btnDone"),0));
         return btnDelete.size();
     }
 }

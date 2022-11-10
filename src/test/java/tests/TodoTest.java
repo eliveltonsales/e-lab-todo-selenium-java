@@ -26,6 +26,11 @@ public class TodoTest {
         Assert.assertTrue(todoPage.createTask(random.nextInt(9)+1) > 0);
     }
 
+    @Test
+    public void verifyTaskDeleted(){
+        Assert.assertEquals(todoPage.deleteTask(todoPage.createTask(random.nextInt((9)+1))), 0);
+    }
+
     @AfterMethod
     public void finishTest(){
        driver.quit();
