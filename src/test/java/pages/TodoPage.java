@@ -6,10 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-
 import java.time.Duration;
 import java.util.List;
-
 import static java.time.LocalDateTime.now;
 
 public class TodoPage extends Base {
@@ -51,4 +49,10 @@ public class TodoPage extends Base {
                 .until(ExpectedConditions.numberOfElementsToBe(By.className("btnDone"),0));
         return btnDelete.size();
     }
+    
+    public Boolean getTaskText(){
+        return txtTask.getAttribute("value").length() == 0;
+    }
+
+
 }

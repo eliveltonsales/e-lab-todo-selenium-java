@@ -31,6 +31,11 @@ public class TodoTest {
         Assert.assertEquals(todoPage.deleteTask(todoPage.createTask(random.nextInt((9)+1))), 0);
     }
 
+    @Test
+    public void verifyClearInputAfterTaskCreated(){
+        todoPage.createTask(1);
+        Assert.assertTrue(todoPage.getTaskText());
+    }
     @AfterMethod
     public void finishTest(){
        driver.quit();
