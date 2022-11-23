@@ -36,6 +36,11 @@ public class TodoTest {
         todoPage.createTask(1);
         Assert.assertTrue(todoPage.getTaskText());
     }
+
+    @Test
+    public void verifyFilterLoadedAllOptions(){
+        Assert.assertTrue(todoPage.getFilterLoaded());
+    }
     @AfterMethod
     public void finishTest(){
        driver.quit();

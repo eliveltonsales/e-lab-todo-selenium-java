@@ -6,7 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import static java.time.LocalDateTime.now;
 
@@ -54,5 +57,15 @@ public class TodoPage extends Base {
         return txtTask.getAttribute("value").length() == 0;
     }
 
-
+    public Boolean getFilterLoaded(){
+        List <String> cboConvert = new ArrayList<>();
+        Select cboFilter = new Select(driver.findElement(By.id("cboFilter")));
+        List <WebElement> op = cboFilter.getOptions();
+        List<String> preLoad = new ArrayList<>();
+        preLoad.add("All");
+        preLoad.add("Done");
+        preLoad.add("To Do");
+        op.stream().map(WebElement::getText).forEach(cboConvert::add);
+        return cboConvert.containsAll(preLoad);
+    }
 }
