@@ -25,6 +25,8 @@ public class TodoPage extends Base {
     WebElement btnDone;
     @FindBy(className="btnDelete")
     List<WebElement> btnDelete;
+    @FindBy(className="toast-body")
+    WebElement toastMessage;
 
     public TodoPage(){
         PageFactory.initElements(driver,this);
@@ -67,5 +69,14 @@ public class TodoPage extends Base {
         preLoad.add("To Do");
         op.stream().map(WebElement::getText).forEach(cboConvert::add);
         return cboConvert.containsAll(preLoad);
+    }
+
+    public String getBlockMessage(){
+        btnAdd.click();
+        new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofMillis(500))
+                .until(ExpectedConditions.elementToBeClickable(toastMessage));
+        return toastMessage.getText();
     }
 }

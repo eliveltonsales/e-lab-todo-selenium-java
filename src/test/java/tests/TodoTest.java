@@ -41,6 +41,11 @@ public class TodoTest {
     public void verifyFilterLoadedAllOptions(){
         Assert.assertTrue(todoPage.getFilterLoaded());
     }
+
+    @Test
+    public void verifyToastEmptyInput(){
+        Assert.assertEquals(todoPage.getBlockMessage(),"Task input can't be empty.");
+    }
     @AfterMethod
     public void finishTest(){
        driver.quit();
