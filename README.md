@@ -1,4 +1,4 @@
-# Java Selenium Todo E2E Example
+# Java Selenium To Do E2E Example
 
 This repo is part of the e-lab project. You can learn more about it [here](https://elivelton.qa).
 
