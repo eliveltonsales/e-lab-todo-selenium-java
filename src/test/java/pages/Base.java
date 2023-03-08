@@ -28,6 +28,8 @@ public class Base {
             e.printStackTrace();
         }
         System.setProperty("webdriver.chrome.driver","src/test/java/webdrivers/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(properties.getProperty("url"));
